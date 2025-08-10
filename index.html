@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Уверенность на сцене: 12 шагов к силе</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --text: #1e293b;
+      --text-light: #64748b;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --border: #e2e8f0;
+      --accent-up: #10b981;
+      --accent-down: #ef4444;
+      --progress-down: #d1d5db;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      background: white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 0;
+    }
+
+    nav h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+      }
+    }
+
+    .hero {
+      text-align: center;
+      padding: 4rem 0;
+    }
+
+    .hero h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--text-light);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .intro {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+      margin: 2rem auto;
+      max-width: 800px;
+      font-style: italic;
+      color: var(--text-light);
+      border-left: 5px solid var(--primary);
+    }
+
+    .quote {
+      font-weight: 600;
+      margin-top: 1rem;
+      color: var(--text);
+    }
+
+    /* Круговой прогресс */
+    .stats {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      margin: 2rem auto;
+      max-width: 800px;
+      text-align: center;
+    }
+
+    .radar-container {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      margin: 0 auto;
+    }
+
+    .radar-circle {
+      fill: none;
+      stroke: #e2e8f0;
+      stroke-width: 10;
+      stroke-linecap: round;
+    }
+
+    .radar-progress {
+      fill: none;
+      stroke: url(#gradient);
+      stroke-width: 10;
+      stroke-linecap: round;
+      transition: stroke-dashoffset 0.6s ease;
+      transform: rotate(-90deg);
+      transform-origin: 100px 100px;
+    }
+
+    .radar-value {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .radar-label {
+      margin-top: 1rem;
+      font-size: 1.1rem;
+      color: var(--text-light);
+    }
+
+    .status {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin: 1rem 0;
+      color: var(--primary);
+    }
+
+    .status-icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .reset-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      margin-top: 1.5rem;
+      transition: background 0.3s;
+    }
+
+    .reset-btn:hover {
+      background: #1d4ed8;
+    }
+
+    .steps {
+      display: grid;
+      gap: 1.5rem;
+      margin: 3rem auto;
+      padding: 0 1rem;
+    }
+
+    .step {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 1.8rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      border: 1px solid var(--border);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .step:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+
+    .step h3 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    .step i {
+      background: var(--primary);
+      color: white;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+    }
+
+    .step label {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .step input[type="checkbox"] {
+      margin-top: 4px;
+      transform: scale(1.3);
+    }
+
+    .step p {
+      margin: 0.8rem 0 1rem 30px;
+    }
+
+    .step .impact {
+      display: inline-block;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: 50px;
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--accent-up);
+      font-weight: 600;
+    }
+
+    .conclusion {
+      text-align: center;
+      padding: 4rem 2rem;
+      margin: 3rem 0;
+    }
+
+    .conclusion h2 {
+      font-size: 2.2rem;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+    }
+
+    .conclusion .quote {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--text);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 0;
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: var(--primary);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+    }
+
+    @media (max-width: 600px) {
+      .radar-container {
+        width: 160px;
+        height: 160px;
+      }
+      .radar-value {
+        font-size: 1.2rem;
+      }
+      .status {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <nav>
+        <h1>На сцену</h1>
+        <ul>
+          <li><a href="#intro">Введение</a></li>
+          <li><a href="#stats">Прогресс</a></li>
+          <li><a href="#steps">Шаги</a></li>
+          <li><a href="#conclusion">Итог</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h2>Уверенность на сцене</h2>
+      <p>12 шагов, чтобы победить страх и говорить с силой</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="intro" id="intro">
+      <p>
+        Этот текст — практическое руководство для тех, кто боится сцены, но хочет выступать уверенно. Здесь собраны проверенные техники, которые помогут тебе снизить уровень тревожности и поднять внутреннюю силу перед выступлением.
+      </p>
+      <p class="quote">
+        «Страх неизбежен. Но с ним можно работать.»
+      </p>
+    </div>
+  </div>
+
+  <!-- Красивый прогресс -->
+  <div class="container">
+    <div class="stats" id="stats">
+      <h3>Твой уровень уверенности</h3>
+
+      <div class="radar-container">
+        <svg width="200" height="200" viewBox="0 0 200 200">
+          <defs>
+            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ef4444"/>
+              <stop offset="50%" stop-color="#f59e0b"/>
+              <stop offset="100%" stop-color="#10b981"/>
+            </linearGradient>
+          </defs>
+          <!-- Фоновый круг -->
+          <circle class="radar-circle" cx="100" cy="100" r="90" />
+          <!-- Прогресс -->
+          <circle class="radar-progress" cx="100" cy="100" r="90" 
+                  stroke-dasharray="565.5" 
+                  stroke-dashoffset="565.5" />
+        </svg>
+        <div class="radar-value"><span id="confidencePercent">0</span>%</div>
+      </div>
+
+      <div class="status-icon">
+        <i class="fas fa-star" id="statusIcon"></i>
+      </div>
+      <div class="status" id="statusText">Новичок</div>
+      <div class="radar-label">
+        Уверенность растёт, страх снижается с каждым шагом
+      </div>
+      <button class="reset-btn" id="resetBtn">🔄 Сбросить прогресс</button>
+    </div>
+  </div>
+
+  <!-- Шаги -->
+  <div class="container">
+    <div class="steps" id="steps">
+      <!-- Все шаги (без изменений) -->
+      <!-- Шаг 1 -->
+      <div class="step">
+        <h3><i class="fas fa-map-marker-alt"></i> 1. Знакомая обстановка = меньше страха</h3>
+        <label>
+          <input type="checkbox" data-up="10" data-down="10">
+          Я выполнил(а) этот шаг
+        </label>
+        <p>Осмотри место, где тебе нужно выступать, заранее. Круто, если ты хотя бы раз прогонишь свою речь там. Чем более знакома будет обстановка — тем более уверенным ты будешь.</p>
+      </div>
+
+      <!-- Остальные шаги — те же... (все 12) -->
+      <!-- Шаг 2 -->
+      <div class="step">
+        <h3><i class="fas fa-running"></i> 2. Физическая подготовка = уверенность в теле</h3>
+        <label>
+          <input type="checkbox" data-up="10" data-down="10">
+          Я выполнил(а) этот шаг
+        </label>
+        <p>Прыжки на месте — одно из самых мощных упражнений на повышение уверенности и решимости. Достаточно спокойных прыжков на месте в течение 30 секунд. Это активирует тело, улучшает кровообращение и выбрасывает адреналин в плюс.</p>
+      </div>
+
+      <div class="step">
+        <h3><i class="fas fa-brain"></i> 3. Постепенное привыкание = снижение тревожности</h3>
+        <label>
+          <input type="checkbox" data-up="10" data-down="10">
+          Я выполнил(а) этот шаг
+        </label>
+        <p>От страха нужно не изолироваться, а постепенно расширять зону комфорта. Ежедневное выступление перед зеркалом или запись себя на видео делает процесс более привычным. Просто нужно сделать это частью рутины — и страх начнёт отступать.</p>
+      </div>
+
+      <div class="step">
+        <h3><i class="fas fa-lightbulb"></i> 4. Не фокусируйся на себе — фокусируйся на теме</h3>
+        <label>
+          <input type="checkbox" data-up="10" data-down="10">
+          Я выполнил(а) этот шаг
+        </label>
+        <p>Чрезмерное внимание к себе повышает волнение, как и сильное внимание к тексту. Обращай внимание на сам предмет, о чём говоришь. Когда ты знаешь больше, чем тебе нужно рассказать — это даёт запас прочности. Если ты забудешь что-то — у тебя будет чем заменить.</p>
+      </div>
+
+      <div class="step">
+        <h3><i class="fas fa-list-check"></i> 5. План = спокойствие в хаосе</h3>
+        <label>
+          <input type="checkbox" data-up="10" data-down="10">
+          Я выполнил(а) этот шаг
+        </label>
+        <p><em>«Если вы идёте к аудитории с пустым разумом, природа заполнит его страхом.»</em><br>Ничто так не воодушевляет, как простой и достижимый план. Разбей своё выступление на части: с чего начнёшь, о чём продолжишь, какой пример расскажешь, какую историю преподнесёшь, какой вывод сделаешь, какую рекомендацию дашь, на какой ноте закончишь.</p>
+      </div>
+
+      <div class="step">
+        <h3><i class="fas fa-pose"></i> 6. Уверенная поза = уверенность внутри</h3>
+        <label>
+          <input type="checkbox" data-up="10" data-down="10">
+          Я выполнил(а) этот шаг
+        </label>
+        <p>Очень сильно тело влияет на самоощущение. Уверенная поза решает. Что такое уверенная поза? Плечи назад, грудь раскрыта, подбородок слегка приподнят, руки свободны. Достаточно просто постоять в ней 10 секунд перед выходом. Это работает.</p>
+      </div>
+
+      <div class="step">
+        <h3><i class="fas fa-sliders-h"></i> 7. Медленная речь = больше контроля</h3>
+        <label>
+          <input type="checkbox" data-up="10" data-down="10">
+          Я выполнил(а) этот шаг
+        </label>
+        <p>Не надо вальяжничать. Достаточно говорить <strong>медленнее</strong>, чем обычно. У нас не стоит задача произнести как можно больше слов — как раз наоборот. Мастерство — в том, чтобы достичь цели меньшими усилиями. Когда ты говоришь медленно — ты чувствуешь себя спокойнее.</p>
+      </div>
+
+      <div class="step">
+        <h3><i class="fas fa-volume-up"></i> 8. Громкость = доминирование</h3>
+        <label>
+          <input type="checkbox" data-up="10" data-down="10">
+          Я выполнил(а) этот шаг
+        </label>
+        <p>Громкость — это сигнал силы. Если ты громче всех — ты доминируешь. Нам не нужно кричать — просто говорить <strong>громче</strong>, чем тебе привычно. Это придаст тебе чувства уверенности и контроля.</p>
+      </div>
+
+      <div class="step">
+        <h3><i class="fas fa-wind"></i> 9. Дыхание — твой якорь в стрессовой ситуации</h3>
+        <label>
+          <input type="checkbox" data-up="10" data-down="10">
+          Я выполнил(а) этот шаг
+        </label>
+        <p>Перед выступлением сделай 3–4 глубоких вдоха через нос, выдох через рот. Это активирует парасимпатическую нервную систему — твой организм «успокаивается». Дыхание — это твой якорь, когда всё вокруг начинает «плыть».</p>
+      </div>
+
+      <div class="step">
+        <h3><i class="fas fa-eye"></i> 10. Зрительный контакт — ключ к связи с аудиторией</h3>
+        <label>
+          <input type="checkbox" data-up="10" data-down="10">
+          Я выполнил(а) этот шаг
+        </label>
+        <p>Не смотри в потолок или в экран. Смотри в глаза людям — даже если они незнакомы. Это создаёт ощущение доверия и контроля. Даже если ты просто смотришь на одного человека — для зрителя это ощущается как личное обращение.</p>
+      </div>
+
+      <div class="step">
+        <h3><i class="fas fa-gamepad"></i> 11. Поиграй со страхом</h3>
+        <label>
+          <input type="checkbox" data-up="10" data-down="10">
+          Я выполнил(а) этот шаг
+        </label>
+        <p>Скажи себе: <em>«Я волнуюсь — и это нормально. Я чувствую адреналин — это моя энергия»</em>. Прими страх как часть процесса, а не врага. Не беги от него — поиграй с ним. Это переключает мозг с режима «паники» на режим «готовности».</p>
+      </div>
+
+      <div class="step">
+        <h3><i class="fas fa-eye"></i> 12. Визуализация успеха = подготовка подсознания</h3>
+        <label>
+          <input type="checkbox" data-up="10" data-down="10">
+          Я выполнил(а) этот шаг
+        </label>
+        <p>За 5 минут до сцены закрой глаза и представь, как ты уверенно выходишь, говоришь, слышишь аплодисменты. Представь себя спокойным, уверенным, харизматичным. Это работает — мозг не так уж точно различает реальное и воображаемое. Подготовь подсознание к успеху.</p>
+      </div>
+    </div>
+  </div>
+
+  <section class="conclusion" id="conclusion">
+    <h2>Помни: страх — это не тормоз, а топливо.</h2>
+    <p class="quote">
+      Он говорит, что ты выступаешь в важном деле. Используй его. Прими его. И шагай на сцену уверенно.
+    </p>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Уверенность на сцене. Вдохновляй. Говори. Меняй.</p>
+    </div>
+  </footer>
+
+  <div class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <script>
+    // Элементы
+    const confidencePercentEl = document.getElementById('confidencePercent');
+    const radarProgress = document.querySelector('.radar-progress');
+    const statusText = document.getElementById('statusText');
+    const statusIcon = document.getElementById('statusIcon');
+    const resetBtn = document.getElementById('resetBtn');
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+    let confidence = 0;
+    const maxConfidence = 120; // 12 шагов × 10
+
+    // Обновление прогресса
+    function updateRadar() {
+      const percent = Math.min(Math.round((confidence / maxConfidence) * 100), 100);
+      confidencePercentEl.textContent = percent;
+
+      // Круг: длина окружности = 2 * π * r = 2 * 3.1416 * 90 ≈ 565.5
+      const offset = 565.5 - (565.5 * percent) / 100;
+      radarProgress.setAttribute('stroke-dashoffset', offset);
+
+      // Статус и иконка
+      if (percent < 30) {
+        statusText.textContent = "Новичок";
+        statusIcon.className = "fas fa-star";
+      } else if (percent < 60) {
+        statusText.textContent = "Уверенный";
+        statusIcon.className = "fas fa-shield-alt";
+      } else if (percent < 85) {
+        statusText.textContent = "Сильный";
+        statusIcon.className = "fas fa-bolt";
+      } else {
+        statusText.textContent = "Профессионал";
+        statusIcon.className = "fas fa-crown";
+      }
+    }
+
+    // Обработчики чекбоксов
+    checkboxes.forEach(checkbox => {
+      checkbox.addEventListener('change', function () {
+        const up = parseInt(this.getAttribute('data-up')) || 0;
+        confidence = this.checked ? confidence + up : confidence - up;
+        confidence = Math.max(0, Math.min(maxConfidence, confidence));
+        updateRadar();
+      });
+    });
+
+    // Сброс
+    resetBtn.addEventListener('click', () => {
+      confidence = 0;
+      checkboxes.forEach(cb => cb.checked = false);
+      updateRadar();
+    });
+
+    // Кнопка "Наверх"
+    const backToTopButton = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTopButton.classList.add('visible');
+      } else {
+        backToTopButton.classList.remove('visible');
+      }
+    });
+
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Плавная прокрутка
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          window.scrollTo({
+            top: target.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Инициализация
+    updateRadar();
+  </script>
+
+</body>
+</html>
