@@ -159,8 +159,9 @@
       stroke: url(#gradient);
       transform: rotate(-90deg);
       transform-origin: 90px 90px;
-      stroke-dasharray: 502.4; /* 2 * π * 80 = ~502.4 */
-      stroke-dashoffset: 502.4;
+      stroke-dasharray: 502.4; /* 2 * π * 80 */
+      /* Убрали stroke-dashoffset из CSS — теперь управляем только через JS */
+      transition: stroke-dashoffset 0.6s ease; /* Плавная анимация */
     }
 
     .radar-value {
@@ -338,7 +339,7 @@
         cy: 80;
       }
       .radar-progress {
-        stroke-dasharray: 439.6; /* 2 * π * 70 */
+        stroke-dasharray: 439.6;
         transform-origin: 80px 80px;
       }
       .radar-value {
@@ -555,9 +556,9 @@
       const percent = Math.min(Math.round((confidence / maxConfidence) * 100), 100);
       confidencePercentEl.textContent = percent;
 
-      const circumference = 2 * Math.PI * 80; // r = 80
+      const circumference = 2 * Math.PI * 80; // ~502.65
       const offset = circumference - (circumference * percent) / 100;
-      radarProgress.setAttribute('stroke-dashoffset', offset);
+      radarProgress.setAttribute('stroke-dashoffset', offset.toFixed(2));
 
       if (percent < 30) {
         statusText.textContent = "Ссыкун";
@@ -615,7 +616,7 @@
       });
     });
 
-    updateRadar();
+    updateRadar(); // Инициализация
   </script>
 
 </body>
